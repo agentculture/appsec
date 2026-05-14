@@ -80,14 +80,14 @@ appsec/
 │   ├── skill-sources.md      # provenance ledger for the 5 vendored skills
 │   └── superpowers/specs/    # this spec
 └── .claude/
-    ├── settings.local.json   # (already present)
+    ├── settings.local.json        # (already present)
+    ├── skills.local.yaml.example  # documents culture_server_yaml + sibling_projects keys
     └── skills/
         ├── cicd/             # vendored from ../steward
         ├── communicate/      # vendored from ../steward
         ├── run-tests/        # vendored from ../steward
         ├── sonarclaude/      # vendored from ../steward
-        ├── version-bump/     # vendored from ../steward
-        └── skills.local.yaml.example   # documents culture_server_yaml + sibling_projects keys
+        └── version-bump/     # vendored from ../steward
 ```
 
 ### Component 1 — the package & CLI chassis
@@ -203,9 +203,11 @@ steward's own, listing each of the five skills with upstream
 satisfies the "if you keep a docs/skill-sources.md" acceptance line in
 issues #3–#7.
 
-`.claude/skills/skills.local.yaml.example` — a committed, documented
-template covering the `culture_server_yaml` and `sibling_projects` keys
-(the steward-prescribed version, not afi-cli's empty file).
+`.claude/skills.local.yaml.example` — a committed, documented template
+covering the `culture_server_yaml` and `sibling_projects` keys (the
+steward-prescribed version, not afi-cli's empty file). The git-ignored
+`.claude/skills.local.yaml` holds the real values; `.gitignore` is updated
+to exclude it.
 
 ### Component 7 — CLAUDE.md refresh
 
