@@ -1088,9 +1088,9 @@ per-file-ignores =
 
 ```yaml
 # markdownlint-cli2 config for appsec.
-# markdownlint-cli2 stops walking at the git root, so the user's global
-# ~/.markdownlint-cli2.yaml isn't picked up from inside the repo.
-# Keep this file aligned with the global preset.
+# markdownlint-cli2 stops walking at the git root, so a global
+# markdownlint config in the user's home directory isn't picked up from
+# inside the repo. Keep this file aligned with the global preset.
 
 config:
   default: true
