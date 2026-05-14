@@ -1626,7 +1626,7 @@ explicitly — these copies do not auto-update.
 
 | Skill | Upstream | Vendored | Divergence |
 |-------|----------|----------|------------|
-| `cicd` | `steward` (`../steward/.claude/skills/cicd/`) | 2026-05-14 | Identifier-only: SKILL.md frontmatter `description` reframed for appsec. Body prose still references steward workflows (e.g. the `steward announce-skill-update` broadcast verb) — appsec is a skill *consumer*, not the supplier, so broadcast mode is not available here. |
+| `cicd` | `steward` (`../steward/.claude/skills/cicd/`) | 2026-05-14 | Identifier-only: SKILL.md frontmatter `description` reframed for appsec. Body prose still references steward-specific constructs (e.g. `steward doctor`, the `STEWARD_PR_AWAIT_WAIT` env var, the steward `status` / `await` gating extensions) — appsec is a skill *consumer*, so these are inherited context, not appsec-actionable calls. |
 | `communicate` | `steward` (`../steward/.claude/skills/communicate/`) | 2026-05-14 | Identifier-only: SKILL.md frontmatter `description` reframed for appsec. Body prose references steward as the supplier; the `steward announce-skill-update` broadcast verb is steward-cli-only and not available to appsec. |
 | `run-tests` | `steward` (`../steward/.claude/skills/run-tests/`) | 2026-05-14 | None — portable verbatim. Coverage source resolves from `[tool.coverage.run]` in `pyproject.toml`. |
 | `sonarclaude` | `steward` (`../steward/.claude/skills/sonarclaude/`) | 2026-05-14 | None — portable verbatim. Project key resolves from `$SONAR_PROJECT` / `--project`. |
