@@ -31,3 +31,20 @@ def test_learn_json(capsys: pytest.CaptureFixture[str]) -> None:
     assert payload["tool"] == "appsec"
     assert payload["status"] == "greenfield"
     assert payload["verb"] == "learn"
+
+
+def test_explain_exits_zero_and_signals_greenfield(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    rc = main(["explain"])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "not yet implemented" in out.lower()
+
+
+def test_explain_json(capsys: pytest.CaptureFixture[str]) -> None:
+    rc = main(["explain", "--json"])
+    assert rc == 0
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["verb"] == "explain"
+    assert payload["status"] == "greenfield"
