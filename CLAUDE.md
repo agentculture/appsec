@@ -4,19 +4,67 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Status
 
-This repository is a **greenfield project**. As of the initial commit, it contains only `README.md`, `LICENSE`, and a Python `.gitignore` — no source code, dependencies, build configuration, or tests exist yet.
+`appsec` is an AgentCulture sibling repo. The onboarding scaffold is in place
+(package, CLI chassis, CI, vendored skills); the actual application-security
+agent — what it analyzes, its real command surface, its architecture — has
+**not** been designed yet. The `learn` / `explain` / `whoami` verbs are honest
+placeholder stubs. Known gaps and deferred work are tracked in the repo's
+onboarding gaps issue.
 
-The stated intent (from `README.md`) is: **"An appsec agent"** — an application-security agent. Specifics (language beyond the Python `.gitignore` hint, frameworks, architecture, target surface) have not been chosen.
+## Build / Install
 
-## When Extending This File
+```bash
+uv sync                       # install the package + dev dependencies
+```
 
-Once the project takes shape, replace the placeholders below with concrete information. Do not pad this file with generic best-practice advice — only document things a new Claude instance could not derive by reading the code itself.
+## Run
 
-- **Build / install** — record the exact command(s) once `pyproject.toml` / `requirements.txt` / equivalent exists.
-- **Run** — entry point (`python -m …`, CLI name, daemon command).
-- **Test** — full suite command and the form for running a single test.
-- **Lint / format** — the toolchain actually configured. The `.gitignore` indicates Python; common Python choices are `flake8`, `pylint`, `bandit`, `black`, `isort` — adopt only what this repo actually wires up.
-- **Architecture** — the cross-file "big picture" once there are multiple modules. Skip until there is something non-obvious to describe.
+```bash
+uv run appsec --version       # or: uv run python -m appsec
+uv run appsec learn           # placeholder verbs: learn / explain / whoami
+```
+
+## Test
+
+```bash
+uv run pytest -n auto         # full suite
+uv run pytest tests/test_cli_chassis.py::test_no_args_prints_help_and_returns_zero -v   # single test (example node id)
+```
+
+## Lint / Format
+
+```bash
+uv run flake8 --config=.flake8 appsec/ tests/
+uv run black appsec/ tests/
+uv run isort appsec/ tests/
+markdownlint-cli2 "**/*.md"
+```
+
+Bandit and pylint run in CI (`.github/workflows/security-checks.yml`).
+
+## Architecture
+
+- `appsec/cli/__init__.py` — the argparse CLI chassis: structured error
+  routing (`_AppsecArgumentParser`), `--json` hint detection, and
+  `_dispatch` (invokes the verb handler, translating `AppsecError` and bare
+  exceptions to structured exit codes). `main()` is the entry point, exposed
+  as the `appsec` console script and via `python -m appsec`.
+- `appsec/cli/_errors.py` — `AppsecError` and the exit-code policy.
+- `appsec/cli/_output.py` — strict stdout/stderr split helpers.
+- `appsec/cli/_commands/` — one module per verb, each exposing `register()`.
+  All three verbs are currently greenfield stubs.
+
+## Version Management
+
+Every PR bumps the version in `pyproject.toml` (CI's `version-check` job
+blocks merge if it matches `main`) and prepends a `CHANGELOG.md` entry
+(convention — not CI-enforced). The vendored `version-bump` skill does both.
+
+## Vendored Skills
+
+`.claude/skills/` holds skills vendored from `steward` (cite, don't import).
+Provenance and divergence are tracked in `docs/skill-sources.md`. Re-sync
+from `../steward/.claude/skills/<name>/`.
 
 ## Workspace Context
 

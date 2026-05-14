@@ -1,0 +1,40 @@
+"""``appsec whoami`` — placeholder verb.
+
+See :mod:`appsec.cli._commands.learn` for why the verbs are stubs. ``whoami``
+will eventually be the smallest identity / auth probe; today it prints an
+honest "not yet implemented" line.
+"""
+
+from __future__ import annotations
+
+import argparse
+
+from appsec import __version__
+from appsec.cli._output import emit_result
+
+_TEXT = "appsec — not yet implemented; appsec is greenfield. See CLAUDE.md."
+
+
+def _json_payload() -> dict[str, object]:
+    return {
+        "tool": "appsec",
+        "version": __version__,
+        "status": "greenfield",
+        "verb": "whoami",
+        "message": _TEXT,
+    }
+
+
+def cmd_whoami(args: argparse.Namespace) -> int:
+    json_mode = bool(getattr(args, "json", False))
+    if json_mode:
+        emit_result(_json_payload(), json_mode=True)
+    else:
+        emit_result(_TEXT, json_mode=False)
+    return 0
+
+
+def register(sub: argparse._SubParsersAction) -> None:
+    p = sub.add_parser("whoami", help="Print appsec's identity probe (stub).")
+    p.add_argument("--json", action="store_true", help="Emit structured JSON.")
+    p.set_defaults(func=cmd_whoami)
