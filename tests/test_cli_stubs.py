@@ -49,3 +49,21 @@ def test_explain_json(capsys: pytest.CaptureFixture[str]) -> None:
     payload = json.loads(capsys.readouterr().out)
     assert payload["verb"] == "explain"
     assert payload["status"] == "greenfield"
+
+
+def test_whoami_exits_zero_and_signals_greenfield(
+    capsys: pytest.CaptureFixture[str],
+) -> None:
+    rc = main(["whoami"])
+    assert rc == 0
+    out = capsys.readouterr().out
+    assert "appsec" in out
+    assert "not yet implemented" in out.lower()
+
+
+def test_whoami_json(capsys: pytest.CaptureFixture[str]) -> None:
+    rc = main(["whoami", "--json"])
+    assert rc == 0
+    payload = json.loads(capsys.readouterr().out)
+    assert payload["verb"] == "whoami"
+    assert payload["status"] == "greenfield"
