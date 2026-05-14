@@ -1691,7 +1691,7 @@ uv run appsec learn           # placeholder verbs: learn / explain / whoami
 
 ```bash
 uv run pytest -n auto         # full suite
-uv run pytest tests/test_cli_chassis.py::test_no_args_prints_help_and_returns_zero -v   # single test
+uv run pytest tests/test_cli_chassis.py::test_no_args_prints_help_and_returns_zero -v   # single test (example node id)
 ```
 
 ## Lint / Format
@@ -1708,9 +1708,10 @@ Bandit and pylint run in CI (`.github/workflows/security-checks.yml`).
 ## Architecture
 
 - `appsec/cli/__init__.py` — the argparse CLI chassis: structured error
-  routing (`_AppsecArgumentParser`), `--json` hint detection, and the
-  `_dispatch` exception wrapper. `main()` is the entry point, exposed as the
-  `appsec` console script and via `python -m appsec`.
+  routing (`_AppsecArgumentParser`), `--json` hint detection, and
+  `_dispatch` (invokes the verb handler, translating `AppsecError` and bare
+  exceptions to structured exit codes). `main()` is the entry point, exposed
+  as the `appsec` console script and via `python -m appsec`.
 - `appsec/cli/_errors.py` — `AppsecError` and the exit-code policy.
 - `appsec/cli/_output.py` — strict stdout/stderr split helpers.
 - `appsec/cli/_commands/` — one module per verb, each exposing `register()`.
@@ -1718,9 +1719,9 @@ Bandit and pylint run in CI (`.github/workflows/security-checks.yml`).
 
 ## Version Management
 
-Every PR bumps the version (`pyproject.toml` + `CHANGELOG.md`) — CI's
-`version-check` job blocks merge if the version matches `main`. Use the
-vendored `version-bump` skill.
+Every PR bumps the version in `pyproject.toml` (CI's `version-check` job
+blocks merge if it matches `main`) and prepends a `CHANGELOG.md` entry
+(convention — not CI-enforced). The vendored `version-bump` skill does both.
 
 ## Vendored Skills
 
