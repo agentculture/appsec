@@ -1,5 +1,5 @@
 [project]
-name = "appsec-cli"
+name = "appsec"
 version = "0.1.0"
 description = "appsec — an application-security agent (greenfield AgentCulture sibling)."
 readme = "README.md"

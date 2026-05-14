@@ -9,7 +9,7 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
-- AgentCulture sibling scaffold: the `appsec-cli` package (hatchling,
+- AgentCulture sibling scaffold: the `appsec` package (hatchling,
   Python >=3.12, zero runtime deps) with the afi-cli CLI chassis —
   structured errors, a strict stdout/stderr split, and `--json` support.
 - Placeholder agent-first verbs `learn` / `explain` / `whoami` — honest
