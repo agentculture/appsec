@@ -39,6 +39,7 @@ def test_explain_exits_zero_and_signals_greenfield(
     rc = main(["explain"])
     assert rc == 0
     out = capsys.readouterr().out
+    assert "appsec" in out
     assert "not yet implemented" in out.lower()
 
 
