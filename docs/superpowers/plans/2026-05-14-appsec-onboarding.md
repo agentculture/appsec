@@ -13,8 +13,8 @@
 ## Working context
 
 - All work happens on branch `onboarding/sibling-scaffold` (already created; the design spec is already committed there). Do **not** create a worktree — the repo is near-empty and there is no parallel work.
-- Reference exemplar: `/home/spark/git/afi-cli/` (read freely for shape; never copy afi-specific content).
-- Skill upstream: `/home/spark/git/steward/.claude/skills/`.
+- Reference exemplar: `../afi-cli/` (read freely for shape; never copy afi-specific content).
+- Skill upstream: `../steward/.claude/skills/`.
 - The design spec is at `docs/superpowers/specs/2026-05-14-appsec-onboarding-design.md`.
 - One version bump for the whole PR: `0.1.0`.
 
@@ -1575,7 +1575,7 @@ Do **not** change `Renamed from \`coordinate\` in steward 0.8.0; absorbed \`gh-i
 #
 # Skills read .claude/skills.local.yaml (git-ignored) and fall back to this
 # committed .example. Copy this file to .claude/skills.local.yaml and fill in
-# real values for the local machine. No /home/<user>/... paths in the tracked
+# real values for the local machine. No absolute user-home paths in the tracked
 # .example — keep those in the git-ignored copy only.
 
 # Path to the local Culture server manifest, used by skills that resolve
@@ -1595,7 +1595,7 @@ sibling_projects: {}
 - [ ] **Step 7: Confirm portability of the vendored tree**
 
 Run: `bash .claude/skills/cicd/scripts/portability-lint.sh`
-Expected: exit 0 with no `/home/...` or per-user-dotfile findings. If it reports findings inside the freshly vendored files, stop and investigate — the upstream copy should already be clean; a finding likely means a stale copy. Re-run Step 1.
+Expected: exit 0 with no absolute user-home paths or per-user-dotfile findings. If it reports findings inside the freshly vendored files, stop and investigate — the upstream copy should already be clean; a finding likely means a stale copy. Re-run Step 1.
 
 - [ ] **Step 8: Commit**
 
