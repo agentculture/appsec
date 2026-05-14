@@ -42,7 +42,8 @@ if [[ -z "$SONAR_KEY" ]]; then
 fi
 
 # ── 1. PR header ──────────────────────────────────────────────────────────
-PR_JSON=$(gh pr view "$PR_NUMBER" --json \
+# appsec-divergence: pass --repo "$REPO" (upstream omits it — agentculture/steward#34)
+PR_JSON=$(gh pr view "$PR_NUMBER" --repo "$REPO" --json \
     number,title,state,isDraft,mergedAt,mergedBy,baseRefName,headRefName,author,url)
 
 echo "════════════════════════════════════════════════════════════════════"
@@ -60,7 +61,8 @@ echo
 echo "── CI checks ─────────────────────────────────────────────────────────"
 # `gh pr checks` exits non-zero when checks are still pending/failing.
 # We don't care about its exit code here; capture and pretty-print.
-CHECKS=$(gh pr checks "$PR_NUMBER" 2>/dev/null || true)
+# appsec-divergence: pass --repo "$REPO" (upstream omits it — agentculture/steward#34)
+CHECKS=$(gh pr checks "$PR_NUMBER" --repo "$REPO" 2>/dev/null || true)
 if [[ -z "$CHECKS" ]]; then
     echo "  (no checks reported)"
 else

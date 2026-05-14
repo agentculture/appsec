@@ -128,7 +128,10 @@ def update_changelog(project_root: Path, new: str, entries: dict) -> None:
 
     marker = "## ["
     idx = text.find(marker)
-    if idx > 0:
+    # appsec-divergence: `idx != -1`, not `idx > 0` — a CHANGELOG that starts
+    # directly with `## [` (marker at index 0) is a valid insertion point.
+    # Upstream uses `idx > 0` — agentculture/steward#34
+    if idx != -1:
         changelog.write_text(text[:idx] + new_entry + text[idx:])
         print(f"Updated CHANGELOG.md with [{new}]")
     else:
