@@ -54,6 +54,10 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     sub = parser.add_subparsers(dest="command", parser_class=_AppsecArgumentParser)
 
+    from appsec.cli._commands import learn as _learn_cmd
+
+    _learn_cmd.register(sub)
+
     # Verb registrations land here as each verb module is added (Tasks 5-7).
 
     return parser
