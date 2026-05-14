@@ -15,9 +15,9 @@ Once the project takes shape, replace the placeholders below with concrete infor
 - **Build / install** — record the exact command(s) once `pyproject.toml` / `requirements.txt` / equivalent exists.
 - **Run** — entry point (`python -m …`, CLI name, daemon command).
 - **Test** — full suite command and the form for running a single test.
-- **Lint / format** — the toolchain actually configured (the workspace-level `~/git/CLAUDE.md` mentions `flake8`, `pylint`, `bandit`, `black`, `isort` as common defaults across sibling Python projects, but only adopt what this repo actually uses).
+- **Lint / format** — the toolchain actually configured. The `.gitignore` indicates Python; common Python choices are `flake8`, `pylint`, `bandit`, `black`, `isort` — adopt only what this repo actually wires up.
 - **Architecture** — the cross-file "big picture" once there are multiple modules. Skip until there is something non-obvious to describe.
 
 ## Workspace Context
 
-This repo lives under `/home/spark/git/` alongside other independent projects (see `/home/spark/git/CLAUDE.md`). The GitHub remote is `agentculture/appsec`, so this is an **AgentCulture org repo** — the cicd/PR-signing conventions from the global `~/.claude/CLAUDE.md` apply. There is no `culture.yaml` yet, so `_resolve-nick.sh` will fall back to the repo basename (`appsec`); signatures resolve to `- appsec (Claude)`. When the cicd skill's `pr-reply.sh` / `pr-batch.sh` author a post, let them append the signature automatically — don't sign manually. For posts those scripts don't author (manual `gh pr create --body …`, etc.), sign explicitly as `- appsec (Claude)`.
+The GitHub remote is `agentculture/appsec`. When opening PRs or posting comments here as an AI assistant, sign them so it's clear they're AI-authored — e.g. `- appsec (Claude)`.
