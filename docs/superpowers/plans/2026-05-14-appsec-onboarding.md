@@ -1108,6 +1108,7 @@ ignores:
   - ".local/**"
   - ".venv/**"
   - ".claude/skills/**"
+  - "docs/superpowers/**"
 ```
 
 > Note: `.claude/skills/**` is ignored because the vendored SKILL.md files are cited verbatim from steward and are not first-party content to lint.
