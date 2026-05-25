@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 Format follows [Keep a Changelog](https://keepachangelog.com/). This project
 adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.0] - 2026-05-25
+
+### Added
+
+- Six new vendored skills from `guildmaster` 0.5.1 (cite-don't-import): `agent-config`, `doc-test-alignment`, and `pypi-maintainer` (guildmaster-origin), plus the devague-origin trio `think`, `spec-to-plan`, and `assign-to-workforce` (re-broadcast via guildmaster). Completes the canonical skill kit per [#12](https://github.com/agentculture/appsec/issues/12).
+
+### Changed
+
+- Resynced the five existing vendored skills (`cicd`, `communicate`, `run-tests`, `sonarclaude`, `version-bump`) from `guildmaster` 0.5.1 and re-pointed their provenance from `steward` to `guildmaster` (the 2026-05-24 steward→guildmaster supplier cutover). `cicd` and `communicate` keep appsec's identity reframing; `communicate` gains the new `skill-new-brief.md` broadcast template.
+- Re-applied appsec's two local script patches after the resync: `cicd/scripts/pr-status.sh` (`--repo "$REPO"` passthrough) and `version-bump/scripts/bump.py` (`idx != -1` insertion guard). Re-filed upstream against guildmaster — [guildmaster#19](https://github.com/agentculture/guildmaster/issues/19) and [guildmaster#18](https://github.com/agentculture/guildmaster/issues/18) — superseding the stale steward#34 references.
+- Re-pointed `docs/skill-sources.md`, `CLAUDE.md`, and the `.claude/skills.local.yaml.example` sibling example from `steward` to `guildmaster` as the AgentCulture skill supplier.
+
 ## [0.1.0] - 2026-05-14
 
 ### Added
