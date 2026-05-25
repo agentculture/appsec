@@ -11,7 +11,7 @@ description: >
   issues — use `gh issue create` or the `cicd` skill for those. Renamed
   from `coordinate` in steward 0.8.0; absorbed `gh-issues` in 0.9.1.
   Issue I/O is backed by `agtag` (>=0.1) starting in 0.11.0.
-  Vendored from steward; see docs/skill-sources.md for divergence notes.
+  Vendored from guildmaster; see docs/skill-sources.md for divergence notes.
 ---
 
 # Communicate (Cross-Repo + Mesh)
@@ -59,6 +59,15 @@ agtag mesh transport is slated for v0.2.
 - A gap surfaces in **another repo's surface** (missing public API,
   wire-format compat fix, divergent skill, documentation ask).
 - You're handing off a self-contained brief to a sibling-repo agent.
+- **(steward-specific — supplier role.)** You're **onboarding a sibling to the
+  stack** — "set it up", "align it", "update it with our stack", "set up the
+  pipelines". The deliverable is an issue with a self-contained brief, **never
+  files written into that repo**. In steward, quote steward's
+  `docs/sibling-pattern.md` (required artifacts) and `docs/skill-sources.md`
+  (the skill set to vendor) into the brief so it stands alone; steward's
+  `CLAUDE.md` "Steward's lane" section is the canonical statement. Downstream
+  vendors of this skill don't onboard siblings — those steward-side docs don't
+  exist in your repo, so skip this bullet.
 - You're asking a question that benefits from a tracked artifact rather
   than ephemeral chat.
 
@@ -306,6 +315,10 @@ hypotheticals.
 
 **Never:**
 
+- Scaffold or write files into the *target* repo when the ask is an issue on
+  it. Handing off / onboarding is an **issue, not an edit** — a direct "set
+  them up" is still an instruction to file the brief. (In steward this is the
+  "Steward's lane" rule; the principle holds for any vendor of this skill.)
 - Post a brief that says "see steward's plan" without inlining the
   content. Briefs must be self-contained.
 - Skip the issue signature. The script enforces it; do not introduce a

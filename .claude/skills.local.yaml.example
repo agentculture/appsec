@@ -15,5 +15,5 @@ culture_server_yaml: ""
 # without hard-coded absolute paths. Relative paths are resolved from the
 # repo root.
 sibling_projects: {}
-  # steward: ../steward
+  # guildmaster: ../guildmaster
   # afi-cli: ../afi-cli

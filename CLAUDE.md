@@ -62,9 +62,11 @@ blocks merge if it matches `main`) and prepends a `CHANGELOG.md` entry
 
 ## Vendored Skills
 
-`.claude/skills/` holds skills vendored from `steward` (cite, don't import).
-Provenance and divergence are tracked in `docs/skill-sources.md`. Re-sync
-from `../steward/.claude/skills/<name>/`.
+`.claude/skills/` holds skills vendored from `guildmaster` (cite, don't
+import) — the AgentCulture skill supplier, post the 2026-05-24 steward→guildmaster
+cutover. Provenance and divergence (including devague-origin re-broadcasts) are
+tracked in `docs/skill-sources.md`. Re-sync from
+`../guildmaster/.claude/skills/<name>/`.
 
 ## Workspace Context
 
