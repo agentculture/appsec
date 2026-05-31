@@ -1,6 +1,6 @@
 [project]
 name = "appsec"
-version = "0.2.0"
+version = "0.2.1"
 description = "appsec — an application-security agent (greenfield AgentCulture sibling)."
 readme = "README.md"
 license = "MIT"
